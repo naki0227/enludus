@@ -203,17 +203,17 @@ ul {
   margin-bottom: 60px;
   text-align: center;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  width: 100%;
 }
 
 .section-title::after {
   content: '';
   position: absolute;
   bottom: -10px;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
   height: 2px;
   background: linear-gradient(to right, transparent, var(--primary-color), transparent);
 }
