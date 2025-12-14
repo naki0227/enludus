@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | Enludus</title>
+
+    <!-- OGP -->
+    <meta property="og:title" content="Projects | Enludus" />
+    <meta property="og:description" content="Enludusが開発する、学びを冒険に変える10以上のプロジェクト。" />
+    <meta property="og:image" content="https://enludus.vercel.app/ogp.png" />
+    <meta property="og:url" content="https://enludus.vercel.app/projects" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://enludus.vercel.app/ogp.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+    <style>
+        .projects-hero {
+            padding: 140px 20px 60px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-color) 0%, #121220 100%);
+        }
+
+        .projects-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .status-section {
+            padding: 60px 20px;
+        }
+
+        .status-section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .status-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .status-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .status-icon.completed {
+            background: var(--status-completed-bg);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .status-icon.wip {
+            background: var(--status-wip-bg);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .status-icon.idea {
+            background: var(--status-idea-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-header p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .project-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .project-detail-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .project-detail-card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover-bg);
+            border-color: rgba(108, 99, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-detail-card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .project-detail-card .project-number {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+        }
+
+        .project-detail-card h3 {
+            font-size: 1.6rem;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        .project-detail-card .category-tag {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .project-detail-card .one-liner {
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .project-detail-card .description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-detail-card .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .project-detail-card .project-link:hover {
+            background: rgba(0, 212, 255, 0.2);
+            color: #fff;
+        }
+
+        .page-footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .projects-hero h1 {
+                font-size: 2rem;
+            }
+
+            .project-detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="/" class="logo">Enludus</a>
+            <ul class="nav-links">
+                <li><a href="/#mission">Mission</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact" class="cta-button-small">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero -->
+        <section class="projects-hero">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>All Projects</h1>
+            <p>知識の壁を壊す、Enludusの全プロジェクト一覧。学びを冒険に変える挑戦の軌跡。</p>
+        </section>
+
+        <!-- Available Now -->
+        <section class="status-section">
+            <div class="status-header">
+                <h2>
+                    <span class="status-icon completed">✓</span>
+                    Available Now
+                </h2>
+                <p>今すぐ使えるプロジェクト</p>
+            </div>
+            <div class="project-detail-grid">
+                <!-- Vidnitive -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#02</span>
+                        <span class="status-badge completed">Completed</span>
+                    </div>
+                    <h3>Vidnitive</h3>
+                    <span class="category-tag">Learning & Growth</span>
+                    <p class="one-liner">YouTube動画からAIが教材を自動生成する、多言語学習プラットフォーム。</p>
+                    <p class="description">
+                        YouTube動画を読み込むだけで、AIが自動的に字幕、単語帳、解説テキストを生成する次世代の学習ツールです。英語、スペイン語、中国語など10ヶ国語以上に対応。好きな動画で、生きた表現を効率的に学べる、あなただけの語学道場です。
+                    </p>
+                    <a href="https://my-language-dojo-l8cl.vercel.app" target="_blank" class="project-link">Try App
+                        →</a>
+                </article>
+
+                <!-- Encura -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#06</span>
+                        <span class="status-badge completed">App Store</span>
+                    </div>
+                    <h3>Encura</h3>
+                    <span class="category-tag">Creative & Culture</span>
+                    <p class="one-liner">あなたの興味に寄り添う、専属パーソナル学芸員AI。</p>
+                    <p class="description">
+                        来館者の関心や知識レベルに合わせて、作品の解説を動的に変化させるAI学芸員。初心者には親しみやすく、専門家には深い洞察を。美術館体験を「誰かのための展示」から「自分だけの対話」へと変え、芸術との出会いを最大化します。
+                    </p>
+                    <a href="https://apps.apple.com/jp/app/encura/id6756042890" target="_blank"
+                        class="project-link">Download on App Store →</a>
+                </article>
+
+                <!-- StudyReel -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#14</span>
+                        <span class="status-badge completed">App Store</span>
+                    </div>
+                    <h3>StudyReel</h3>
+                    <span class="category-tag">Productivity & Support</span>
+                    <p class="one-liner">勉強風景をタイムラプスで保存し、成果を視覚化。</p>
+                    <p class="description">
+                        あなたの学習時間をタイムラプス動画として記録し、努力の軌跡を可視化するアプリです。積み上げた時間は嘘をつかない。日々の学習を美しい映像として残すことで、モチベーションを維持し、確かな成長実感を提供します。
+                    </p>
+                    <a href="https://apps.apple.com/jp/app/studyreel/id6756177589" target="_blank"
+                        class="project-link">Download on App Store →</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- In Progress -->
+        <section class="status-section">
+            <div class="status-header">
+                <h2>
+                    <span class="status-icon wip">⚡</span>
+                    In Progress
+                </h2>
+                <p>開発中のプロジェクト</p>
+            </div>
+            <div class="project-detail-grid">
+                <!-- Mirutabi -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#05</span>
+                        <span class="status-badge wip">Pre-Open</span>
+                    </div>
+                    <h3>Mirutabi</h3>
+                    <span class="category-tag">Creative & Culture</span>
+                    <p class="one-liner">ルート共有と信頼で紡ぐ、旅の体験アーカイブSNS。</p>
+                    <p class="description">
+                        旅のルートと体験を共有し、信頼スコアで質の高い情報を届ける旅行SNS。単なる写真投稿ではなく、「この道を辿れば、同じ感動に出会える」という文化の継承を目指します。旅人同士が支え合い、世界の物語をつなぐプラットフォームです。
+                    </p>
+                    <a href="https://mirutabi.vercel.app" target="_blank" class="project-link">Try App →</a>
+                </article>
+
+                <!-- Lifehack Alchemist -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#03</span>
+                        <span class="status-badge wip">In Progress</span>
+                    </div>
+                    <h3>Lifehack Alchemist</h3>
+                    <span class="category-tag">Learning & Growth</span>
+                    <p class="one-liner">物理・化学で無双する、理科嫌いのためのステルス学習RPG。</p>
+                    <p class="description">
+                        魔法の世界で、あなたは「科学の力」を使って敵を倒し、謎を解く魔法使い。気づけば、運動エネルギー、化学反応、電磁気学が自然と身についている。勉強している感覚ゼロで、科学が「チート能力」に変わるゲーム体験です。
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Idea Phase -->
+        <section class="status-section">
+            <div class="status-header">
+                <h2>
+                    <span class="status-icon idea">💡</span>
+                    Idea Phase
+                </h2>
+                <p>構想中のプロジェクト</p>
+            </div>
+            <div class="project-detail-grid">
+                <!-- AITH -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#01</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>AITH</h3>
+                    <span class="category-tag">Learning & Growth</span>
+                    <p class="one-liner">あなたの理解度を記憶する、AI個別指導パートナー。</p>
+                    <p class="description">
+                        ユーザーの学習履歴と理解度を分析し、弱点を見逃さない伴走型の学習支援AI。まるで専属の家庭教師のように、あなたのペースに合わせて問いかけ、導く。学びの孤独を終わらせ、成長の実感を届けます。
+                    </p>
+                </article>
+
+                <!-- Questify Learning -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#04</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>Questify Learning</h3>
+                    <span class="category-tag">Learning & Growth</span>
+                    <p class="one-liner">暗記カードを読み込み、自分だけの学習RPGを生成するAI。</p>
+                    <p class="description">
+                        手持ちの単語帳や教科書をアップロードするだけで、あなた専用のダンジョンとクエストを自動生成。敵を倒すたびに知識が定着し、ボスを倒せばテスト本番も怖くない。学びを、攻略可能なゲームに変える魔法のツールです。
+                    </p>
+                </article>
+
+                <!-- Prompt-to-Physical -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#07</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>Prompt-to-Physical Crafting Tool</h3>
+                    <span class="category-tag">Creative & Culture</span>
+                    <p class="one-liner">言葉から、物理的に作れる設計図を生成するDIY支援AI。</p>
+                    <p class="description">
+                        「本棚が欲しい」「子供用の椅子を作りたい」。そんなアイデアを言葉で伝えるだけで、素材、寸法、工程まで含めた実際に制作可能な設計図を出力します。ものづくりの敷居を下げ、想像を形にする喜びを、すべての人に届けます。
+                    </p>
+                </article>
+
+                <!-- Universal Media Lab -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#08</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>Universal Media Lab</h3>
+                    <span class="category-tag">Creative & Culture</span>
+                    <p class="one-liner">知識ゼロでも、あらゆるメディアを最適変換する全自動研究所。</p>
+                    <p class="description">
+                        動画、画像、音声。形式も品質もバラバラなファイルを、目的に応じて一瞬で最適化するAI研究所。専門知識も複雑な設定も不要。「とりあえず投げ込めば完璧に仕上がる」体験で、クリエイティブの時間を創作そのものへと取り戻します。
+                    </p>
+                </article>
+
+                <!-- Structura AI -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#09</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>Structura AI</h3>
+                    <span class="category-tag">Productivity & Support</span>
+                    <p class="one-liner">脳内メモを、提出可能なレポート・スライドに変える思考整理AI。</p>
+                    <p class="description">
+                        散らかった思考、断片的なメモ、箇条書きのアイデア。それらを論理的な構造へと再構成し、一瞬でレポートやプレゼン資料に昇華させます。知的生産のボトルネックを破壊し、あなたの時間と集中力を守る、思考の建築家です。
+                    </p>
+                </article>
+
+                <!-- AI Meeting Minutes -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#10</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>AI Meeting Minutes Structurer</h3>
+                    <span class="category-tag">Productivity & Support</span>
+                    <p class="one-liner">決定事項と責任の所在を明確化し、タスク漏れを防ぐ議事録AI。</p>
+                    <p class="description">
+                        「誰が」「何を」「いつまでに」やるのか。会議の曖昧さを排除し、行動に直結する議事録を自動生成。責任の所在を明確にし、チームの時間を空中分解から守ります。
+                    </p>
+                </article>
+
+                <!-- KANA: ZISOHKAI -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#11</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>KANA: ZISOHKAI <small style="opacity: 0.6; font-size: 0.7em;">カナ：字創ノ界</small></h3>
+                    <span class="category-tag">Learning & Growth</span>
+                    <p class="one-liner">漢字の部品を集めて創造し、その字に変身して戦う漢字アクションRPG。</p>
+                    <p class="description">
+                        偏・旁・冠などの部品を組み合わせて「漢字」を創造し、その字の力を宿して戦うアクションゲーム。単なる学習ソフトではなく、漢字の構造そのものを「魔法」や「武器」として扱うことで、直感的な理解と冒険の興奮を融合させます。
+                    </p>
+                </article>
+
+                <!-- Enludus Engine -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#12</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>Enludus Engine</h3>
+                    <span class="category-tag">Creative & Culture</span>
+                    <p class="one-liner">「学び」と「遊び」の融合を、システムレベルで最適化する独自ゲームエンジン。</p>
+                    <p class="description">
+                        教育的要素をゲームメカニクスとして自然に組み込むために設計された、Enludus専用のゲームエンジン。物理演算やレンダリングだけでなく、「知識の習得」をゲームの進行と直結させるための独自のスクリプトとツールセットを開発します。
+                    </p>
+                </article>
+
+                <!-- Enludus AI -->
+                <article class="project-detail-card">
+                    <div class="card-header">
+                        <span class="project-number">#13</span>
+                        <span class="status-badge idea">Idea Phase</span>
+                    </div>
+                    <h3>Enludus AI</h3>
+                    <span class="category-tag">Productivity & Support</span>
+                    <p class="one-liner">Enludusの全プロジェクトを支える、完全自社開発の特化型AI基盤。</p>
+                    <p class="description">
+                        API制限やコストの制約から解放され、Enludusのアプリケーション群に無限の可能性をもたらすための独自AI基盤。既存モデルへの依存を脱却し、教育とゲーミフィケーションに特化した「使い放題」の知能を構築することで、より自由で高度なユーザー体験を実現します。
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <p>Enludus — Encourage, Enable, Learn & Play.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
+</CodeContent>
+<parameter name="EmptyFile">false
