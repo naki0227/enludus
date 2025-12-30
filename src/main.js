@@ -48,8 +48,8 @@ if (heroSection && heroBg) {
 const style = document.createElement('style');
 style.textContent = `
   .fade-in-section {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1; /* Was 0: Changed to 1 to fix blank screen issue on Vercel */
+    transform: none; /* Was translateY(30px) */
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
   
