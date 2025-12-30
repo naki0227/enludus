@@ -201,6 +201,11 @@ ul {
 }
 
 /* Section Common */
+section {
+  scroll-margin-top: 100px;
+  /* Fix navbar overlap */
+}
+
 .section-title {
   font-size: 3rem;
   margin-bottom: 60px;
