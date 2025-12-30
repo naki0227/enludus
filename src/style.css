@@ -152,13 +152,15 @@ ul {
 
 .hero-title .line {
   display: block;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1s ease forwards;
+  opacity: 1;
+  /* Was 0: Forced visible */
+  transform: none;
+  /* Was translateY(20px) */
+  /* animation: fadeUp 1s ease forwards; Removed to prevent hidden state */
 }
 
 .hero-title .line:nth-child(2) {
-  animation-delay: 0.3s;
+  /* animation-delay: 0.3s; */
   background: linear-gradient(to right, #fff, var(--secondary-color));
   -webkit-background-clip: text;
   background-clip: text;
@@ -167,8 +169,9 @@ ul {
 
 .hero-subtitle {
   font-size: 1.2rem;
-  opacity: 0;
-  animation: fadeUp 1s ease 0.6s forwards;
+  opacity: 1;
+  /* Was 0: Forced visible */
+  /* animation: fadeUp 1s ease 0.6s forwards; */
   color: rgba(255, 255, 255, 0.7);
 }
 
