@@ -107,7 +107,7 @@ graph TD
 
 * **Focus:** AI-Native App Development, Gamification, EdTech
 * **Skills:** TypeScript, Swift, Dart, Python, Rust, Go
-* **Contact:** nakinakipal@gmail.com
+* **Contact:** contact@enludus.com
 
 <p align="center"> 
     © 2025 Enludus. All rights reserved. 
